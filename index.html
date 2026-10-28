@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Earthed Project | Cycling for a cause</title>
+<meta name="description" content="Earthed Project is an NGO founded in Madrid in 2015. We inspire people to donate stationery and school supplies for children in need.">
+<link rel="icon" href="logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;500;700&family=Work+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --blue:#245d9d;
+  --teal:#01a59b;
+  --lav:#e9e9ef;
+  --head:"Comfortaa","Quicksand","Nunito",Arial,sans-serif;
+  --body:"Work Sans","Helvetica Neue",Arial,sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:#fff;color:var(--blue);font-family:var(--body);font-weight:300;font-size:1.05rem;line-height:1.75}
+img,svg{max-width:100%}
+a{color:inherit}
+a:focus-visible{outline:3px solid var(--teal);outline-offset:3px}
+.wrap{max-width:1100px;margin:0 auto;padding:0 1.5rem}
+h1,h2,h3{font-family:var(--head);font-weight:400;line-height:1.2;margin:0 0 .6em}
+h2{font-size:clamp(1.7rem,3.6vw,2.4rem)}
+p{margin:0 0 1.2em}
+
+/* header */
+.top{padding:calc(1rem + env(safe-area-inset-top,0px)) 0 1rem;background:#fff}
+.nav{display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap}
+.nav .logo img{height:68px;width:auto;display:block}
+.nav ul{display:flex;gap:1.8rem;list-style:none;margin:0;padding:0;font-size:.85rem;font-weight:400;flex-wrap:wrap}
+.nav ul a{color:var(--teal);text-decoration:none;padding-bottom:3px}
+.nav ul a:hover,.nav ul a[aria-current]{border-bottom:2px solid var(--teal)}
+
+/* buttons */
+.btn{display:inline-block;background:var(--teal);color:#fff;text-decoration:none;text-transform:uppercase;letter-spacing:.12em;font-size:.8rem;font-weight:500;padding:1rem 2.2rem;border-radius:999px;border:2px solid var(--teal);transition:background .15s,color .15s}
+.btn:hover{background:#008a82;border-color:#008a82}
+.btn.ghost{background:transparent;border-color:#fff}
+.btn.ghost:hover{background:#fff;color:var(--blue);border-color:#fff}
+
+/* hero */
+.hero{position:relative;min-height:460px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:4rem 1.5rem;color:#fff;
+  background:linear-gradient(rgba(36,93,157,.4),rgba(36,93,157,.4)),url(images/banner.jpg) center/cover no-repeat,url(banner.jpg) center/cover no-repeat,#245d9d}
+.hero h1{font-size:clamp(2.1rem,5.2vw,3.7rem);max-width:21ch;margin:0 auto 1.6rem}
+.ul{position:relative;white-space:nowrap}
+.ul::after{content:"";position:absolute;left:-2%;right:-2%;bottom:-.12em;height:.16em;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 12' preserveAspectRatio='none'%3E%3Cpath d='M1 8 Q30 3 60 7 T99 5' fill='none' stroke='%2301a59b' stroke-width='3' vector-effect='non-scaling-stroke'/%3E%3C/svg%3E") center/100% 100% no-repeat}
+.hero .btns{display:flex;gap:1rem;flex-wrap:wrap;justify-content:center}
+
+/* welcome */
+.welcome{position:relative;background:var(--lav);padding:5rem 0 9rem}
+.welcome .wrap{display:grid;grid-template-columns:1fr 1.25fr;gap:3.5rem;align-items:center}
+.globe{display:block;width:min(100%,330px);margin:0 auto}
+.welcome h2{margin-bottom:.8em}
+.welcome p{max-width:52ch;font-size:1rem}
+.wave{position:absolute;left:0;right:0;bottom:-1px;height:70px;display:block}
+.wave path{fill:#fff}
+
+/* how it works */
+.how{padding:4rem 0 5rem;text-align:center}
+.how h2{margin-bottom:2.5rem}
+.cols{display:grid;grid-template-columns:repeat(3,1fr);gap:2.5rem}
+.cols .ico{width:96px;height:52px;color:var(--teal);margin:0 auto 1rem;display:block}
+.cols h3{font-size:1.5rem}
+.cols p{max-width:26ch;margin:0 auto;font-size:1rem}
+
+.group{display:block;width:100%;height:auto;max-height:640px;object-fit:cover}
+
+/* photo placeholders */
+.ph{margin:0;position:relative;width:100%;aspect-ratio:21/8;background:#eaf3f8;border:2px dashed #9dc0d8;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.6rem;padding:1rem;text-align:center;color:var(--blue);font-size:.95rem;overflow:hidden}
+.ph svg{width:44px;height:44px;opacity:.7}
+.ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+
+/* partners */
+.partners{padding:4.5rem 0 5rem;text-align:center}
+.partners h2{margin-bottom:2.5rem}
+.logos{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:2.5rem 4rem}
+.logos img{width:auto;height:auto;max-width:190px;max-height:60px;display:block}
+.logos img.tall{max-height:84px}
+
+/* footer */
+footer{background:var(--lav) url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='200'%20height='108'%20viewBox='0%200%20200%20108'%3E%3Cg%20transform='translate(0,0)'%20fill='none'%20stroke='%23d2e8e6'%20stroke-width='4'%3E%3Ccircle%20cx='27'%20cy='27'%20r='18'/%3E%3Ccircle%20cx='73'%20cy='27'%20r='18'/%3E%3Cpath%20d='M39.7%2039.7L60.3%2014.3'/%3E%3C/g%3E%3Cg%20transform='translate(100,0)'%20fill='none'%20stroke='%23d2e8e6'%20stroke-width='4'%3E%3Ccircle%20cx='27'%20cy='27'%20r='18'/%3E%3Ccircle%20cx='73'%20cy='27'%20r='18'/%3E%3Cpath%20d='M39.7%2039.7L60.3%2014.3'/%3E%3C/g%3E%3Cg%20transform='translate(-50,54)'%20fill='none'%20stroke='%23d2e8e6'%20stroke-width='4'%3E%3Ccircle%20cx='27'%20cy='27'%20r='18'/%3E%3Ccircle%20cx='73'%20cy='27'%20r='18'/%3E%3Cpath%20d='M39.7%2039.7L60.3%2014.3'/%3E%3C/g%3E%3Cg%20transform='translate(50,54)'%20fill='none'%20stroke='%23d2e8e6'%20stroke-width='4'%3E%3Ccircle%20cx='27'%20cy='27'%20r='18'/%3E%3Ccircle%20cx='73'%20cy='27'%20r='18'/%3E%3Cpath%20d='M39.7%2039.7L60.3%2014.3'/%3E%3C/g%3E%3Cg%20transform='translate(150,54)'%20fill='none'%20stroke='%23d2e8e6'%20stroke-width='4'%3E%3Ccircle%20cx='27'%20cy='27'%20r='18'/%3E%3Ccircle%20cx='73'%20cy='27'%20r='18'/%3E%3Cpath%20d='M39.7%2039.7L60.3%2014.3'/%3E%3C/g%3E%3C/svg%3E") center/280px 151px;padding:4.5rem 0}
+footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:1.5rem;flex-wrap:wrap}
+footer .brand img{height:64px;width:auto;display:block}
+.follow{text-decoration:none;display:flex;align-items:center;gap:.8rem;font-size:.85rem;font-weight:400}
+.follow svg{width:30px;height:30px}
+
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+@media (max-width:800px){
+  .nav{justify-content:center;text-align:center}
+  .nav ul{gap:1.1rem;justify-content:center}
+  .welcome{padding:3.5rem 0 7rem}
+  .welcome .wrap{grid-template-columns:1fr;gap:2rem}
+  .cols{grid-template-columns:1fr;gap:2.5rem}
+  .ph{aspect-ratio:4/3}
+  footer .wrap{justify-content:center;text-align:center}
+}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="inf" viewBox="0 0 100 54">
+    <g fill="none" stroke="currentColor" stroke-width="6">
+      <circle cx="27" cy="27" r="18"/><circle cx="73" cy="27" r="18"/><path d="M39.7 39.7L60.3 14.3"/>
+    </g>
+  </symbol>
+</svg>
+
+<header class="top">
+  <div class="wrap nav">
+    <a class="logo" href="index.html"><img src="logo.png" alt="Earthed Project"></a>
+    <ul>
+      <li><a href="index.html" aria-current="page">Home</a></li>
+      <li><a href="our-story.html">Our story</a></li>
+      <li><a href="latest-adventure.html">Latest adventure</a></li>
+      <li><a href="donate.html">Donate</a></li>
+    </ul>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <h1>Cycling for a <span class="ul">cause,</span> one kilometer at a time.</h1>
+    <div class="btns">
+      <a class="btn" href="donate.html">Donate now</a>
+      <!-- Replace # with a sign-up link or a mailto: address -->
+      <a class="btn ghost" href="#">Ride with us</a>
+    </div>
+  </section>
+
+  <section class="welcome">
+    <div class="wrap">
+      <svg class="globe" viewBox="0 0 220 250" role="img" aria-label="Globe with the Earthed Project symbol">
+        <defs><clipPath id="g"><circle cx="110" cy="145" r="100"/></clipPath></defs>
+        <circle cx="110" cy="145" r="100" fill="#245d9d"/>
+        <g clip-path="url(#g)" fill="#01a59b">
+          <path d="M28 98Q52 70 92 82Q110 104 90 128Q100 150 82 168Q58 160 46 130Q22 120 28 98Z"/>
+          <path d="M86 176Q116 168 126 192Q120 228 100 246Q80 220 86 176Z"/>
+          <path d="M138 90Q176 80 192 112Q190 148 170 164Q150 196 138 166Q128 124 138 90Z"/>
+        </g>
+        <svg x="68" y="0" width="84" height="45" viewBox="0 0 100 54" style="color:#01a59b"><use href="#inf"/></svg>
+      </svg>
+      <div>
+        <h2>Welcome to Earthed Project!</h2>
+        <p>Our mission is to inspire people to donate stationery, educational, and school supplies to enhance the quality of education of children in need.</p>
+        <p>Our vision is a world in which every child attains the right to have educational supplies in order to receive a quality education.</p>
+        <a class="btn" href="our-story.html">Our story</a>
+      </div>
+    </div>
+    <svg class="wave" viewBox="0 0 1440 70" preserveAspectRatio="none" aria-hidden="true"><path d="M0 70V25Q720 105 1440 25V70Z"/></svg>
+  </section>
+
+  <section class="how">
+    <div class="wrap">
+      <h2>How does it work?</h2>
+      <div class="cols">
+        <div>
+          <svg class="ico" aria-hidden="true"><use href="#inf"/></svg>
+          <h3>Cycle trip</h3>
+          <p>Each year we organise a cycling journey that takes participants across different parts of the world.</p>
+        </div>
+        <div>
+          <svg class="ico" aria-hidden="true"><use href="#inf"/></svg>
+          <h3>Collaborations</h3>
+          <p>Through different social platforms and FundRazr, we ask for donations from people and companies.</p>
+        </div>
+        <div>
+          <svg class="ico" aria-hidden="true"><use href="#inf"/></svg>
+          <h3>Donations</h3>
+          <p>The donations we receive go to the children, schools, and orphanages in need.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Looks for Group.jpg in the images folder first, then next to index.html -->
+  <img class="group" src="images/Group.jpg" onerror="this.onerror=null;this.src='Group.jpg'" alt="The Earthed Project team with their bikes">
+
+  <section class="partners">
+    <div class="wrap">
+      <h2>Our partners</h2>
+      <div class="logos">
+        <img src="images/partners/headware.png" alt="Headware">
+        <img class="tall" src="images/partners/su.png" alt="S/U">
+        <img src="images/partners/hit-my-macros.png" alt="Hit My Macros">
+        <img src="images/partners/komoot.png" alt="Komoot">
+        <img src="images/partners/lit.png" alt="Lit">
+        <img src="images/partners/keego.png" alt="Keego">
+        <img class="tall" src="images/partners/wam.png" alt="WAM We Are More">
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <a class="brand" href="index.html"><img src="logo.png" alt="Earthed Project"></a>
+    <!-- Replace # with your Instagram link -->
+    <a class="follow" href="#" aria-label="Follow Earthed Project on Instagram">
+      <span>Follow for updates!</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="#245d9d" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r=".6" fill="#245d9d"/></svg>
+    </a>
+  </div>
+</footer>
+
+</body>
+</html>
