@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Latest adventure | Earthed Project</title>
+<meta name="description" content="Our cycling trips: Barcelona to Florence and Florence to Zagreb, and where the donations went.">
+<link rel="icon" href="logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;500;700&family=Work+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --blue:#245d9d;
+  --teal:#01a59b;
+  --lav:#e9e9ef;
+  --head:"Comfortaa","Quicksand","Nunito",Arial,sans-serif;
+  --body:"Work Sans","Helvetica Neue",Arial,sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:#fff;color:var(--blue);font-family:var(--body);font-weight:300;font-size:1.05rem;line-height:1.75}
+img,svg{max-width:100%}
+a{color:inherit}
+a:focus-visible{outline:3px solid var(--teal);outline-offset:3px}
+.wrap{max-width:1100px;margin:0 auto;padding:0 1.5rem}
+h1,h2,h3{font-family:var(--head);font-weight:400;line-height:1.2;margin:0 0 .6em}
+h2{font-size:clamp(1.7rem,3.6vw,2.4rem)}
+p{margin:0 0 1.2em}
+
+/* header */
+.top{padding:calc(1rem + env(safe-area-inset-top,0px)) 0 1rem;background:#fff}
+.nav{display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap}
+.nav .logo img{height:68px;width:auto;display:block}
+.nav ul{display:flex;gap:1.8rem;list-style:none;margin:0;padding:0;font-size:.85rem;font-weight:400;flex-wrap:wrap}
+.nav ul a{color:var(--teal);text-decoration:none;padding-bottom:3px}
+.nav ul a:hover,.nav ul a[aria-current]{border-bottom:2px solid var(--teal)}
+
+/* buttons */
+.btn{display:inline-block;background:var(--teal);color:#fff;text-decoration:none;text-transform:uppercase;letter-spacing:.12em;font-size:.8rem;font-weight:500;padding:1rem 2.2rem;border-radius:999px;border:2px solid var(--teal);transition:background .15s,color .15s}
+.btn:hover{background:#008a82;border-color:#008a82}
+.btn.ghost{background:transparent;border-color:#fff}
+.btn.ghost:hover{background:#fff;color:var(--blue);border-color:#fff}
+
+/* hero */
+.hero{position:relative;min-height:460px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:4rem 1.5rem;color:#fff;
+  background:linear-gradient(rgba(36,93,157,.4),rgba(36,93,157,.4)),url(banner.JPG) center/cover no-repeat,#245d9d}
+.hero h1{font-size:clamp(2.1rem,5.2vw,3.7rem);max-width:21ch;margin:0 auto 1.6rem}
+.ul{position:relative;white-space:nowrap}
+.ul::after{content:"";position:absolute;left:-2%;right:-2%;bottom:-.12em;height:.16em;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 12' preserveAspectRatio='none'%3E%3Cpath d='M1 8 Q30 3 60 7 T99 5' fill='none' stroke='%2301a59b' stroke-width='3' vector-effect='non-scaling-stroke'/%3E%3C/svg%3E") center/100% 100% no-repeat}
+.hero .btns{display:flex;gap:1rem;flex-wrap:wrap;justify-content:center}
+
+/* welcome */
+.welcome{position:relative;background:var(--lav);padding:5rem 0 9rem}
+.welcome .wrap{display:grid;grid-template-columns:1fr 1.25fr;gap:3.5rem;align-items:center}
+.globe{display:block;width:min(100%,330px);margin:0 auto}
+.welcome h2{margin-bottom:.8em}
+.welcome p{max-width:52ch;font-size:1rem}
+.wave{position:absolute;left:0;right:0;bottom:-1px;height:70px;display:block}
+.wave path{fill:#fff}
+
+/* how it works */
+.how{padding:4rem 0 5rem;text-align:center}
+.how h2{margin-bottom:2.5rem}
+.cols{display:grid;grid-template-columns:repeat(3,1fr);gap:2.5rem}
+.cols .ico{width:96px;height:52px;color:var(--teal);margin:0 auto 1rem;display:block}
+.cols h3{font-size:1.5rem}
+.cols p{max-width:26ch;margin:0 auto;font-size:1rem}
+
+.group{display:block;width:100%;height:auto;max-height:640px;object-fit:cover}
+
+/* photo placeholders */
+.ph{margin:0;position:relative;width:100%;aspect-ratio:21/8;background:#eaf3f8;border:2px dashed #9dc0d8;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.6rem;padding:1rem;text-align:center;color:var(--blue);font-size:.95rem;overflow:hidden}
+.ph svg{width:44px;height:44px;opacity:.7}
+.ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+
+/* partners */
+.partners{padding:4.5rem 0 5rem;text-align:center}
+.partners h2{margin-bottom:2.5rem}
+.logos{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:2.5rem 4rem}
+.logos img{width:auto;height:auto;max-width:190px;max-height:60px;display:block}
+.logos img.tall{max-height:84px}
+
+/* footer */
+footer{background:var(--lav) url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='200'%20height='108'%20viewBox='0%200%20200%20108'%3E%3Cg%20transform='translate(0,0)'%20fill='none'%20stroke='%23d2e8e6'%20stroke-width='4'%3E%3Ccircle%20cx='27'%20cy='27'%20r='18'/%3E%3Ccircle%20cx='73'%20cy='27'%20r='18'/%3E%3Cpath%20d='M39.7%2039.7L60.3%2014.3'/%3E%3C/g%3E%3Cg%20transform='translate(100,0)'%20fill='none'%20stroke='%23d2e8e6'%20stroke-width='4'%3E%3Ccircle%20cx='27'%20cy='27'%20r='18'/%3E%3Ccircle%20cx='73'%20cy='27'%20r='18'/%3E%3Cpath%20d='M39.7%2039.7L60.3%2014.3'/%3E%3C/g%3E%3Cg%20transform='translate(-50,54)'%20fill='none'%20stroke='%23d2e8e6'%20stroke-width='4'%3E%3Ccircle%20cx='27'%20cy='27'%20r='18'/%3E%3Ccircle%20cx='73'%20cy='27'%20r='18'/%3E%3Cpath%20d='M39.7%2039.7L60.3%2014.3'/%3E%3C/g%3E%3Cg%20transform='translate(50,54)'%20fill='none'%20stroke='%23d2e8e6'%20stroke-width='4'%3E%3Ccircle%20cx='27'%20cy='27'%20r='18'/%3E%3Ccircle%20cx='73'%20cy='27'%20r='18'/%3E%3Cpath%20d='M39.7%2039.7L60.3%2014.3'/%3E%3C/g%3E%3Cg%20transform='translate(150,54)'%20fill='none'%20stroke='%23d2e8e6'%20stroke-width='4'%3E%3Ccircle%20cx='27'%20cy='27'%20r='18'/%3E%3Ccircle%20cx='73'%20cy='27'%20r='18'/%3E%3Cpath%20d='M39.7%2039.7L60.3%2014.3'/%3E%3C/g%3E%3C/svg%3E") center/280px 151px;padding:4.5rem 0}
+footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:1.5rem;flex-wrap:wrap}
+footer .brand img{height:64px;width:auto;display:block}
+.follow{text-decoration:none;display:flex;align-items:center;gap:.8rem;font-size:.85rem;font-weight:400}
+.follow svg{width:30px;height:30px}
+
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+@media (max-width:800px){
+  .nav{justify-content:center;text-align:center}
+  .nav ul{gap:1.1rem;justify-content:center}
+  .welcome{padding:3.5rem 0 7rem}
+  .welcome .wrap{grid-template-columns:1fr;gap:2rem}
+  .cols{grid-template-columns:1fr;gap:2.5rem}
+  .ph{aspect-ratio:4/3}
+  footer .wrap{justify-content:center;text-align:center}
+}
+
+/* latest adventure */
+.la-hero{background:var(--blue);color:#fff;text-align:center;padding:5rem 1.5rem 4rem}
+.la-hero h1{font-size:clamp(2.4rem,6vw,4rem);margin:0}
+.la-hero .ul::after{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 12' preserveAspectRatio='none'%3E%3Cpath d='M1 8 Q30 3 60 7 T99 5' fill='none' stroke='%2301a59b' stroke-width='3' vector-effect='non-scaling-stroke'/%3E%3C/svg%3E")}
+.trip-sec{padding:4.5rem 0}
+.trip-sec.alt{background:var(--lav)}
+.trip-sec .wrap{display:grid;grid-template-columns:1fr 1.1fr;gap:3.5rem;align-items:start}
+.trip-sec h2{margin-bottom:.2em}
+.trip-sec .km{font-family:var(--head);font-size:1.7rem;color:var(--teal);margin:0 0 1em}
+.trip-sec p{font-size:1rem}
+.mapbox{margin:0 0 2.5rem;aspect-ratio:16/7}
+.grid6{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:2.5rem}
+.grid6 .ph{aspect-ratio:1/1;margin:0}
+.grid6 .ph span{font-size:.85rem}
+.stats{border-left:4px solid var(--teal);padding-left:1.4rem;margin-top:1rem}
+.stats p{margin:0 0 1rem}
+.stats strong{display:block;font-weight:400;font-family:var(--head);font-size:2rem;line-height:1.1;color:var(--blue)}
+.stats a{color:var(--blue)}
+.don{padding:4.5rem 0}
+.next{background:var(--blue);color:#fff}
+.next h2{color:#fff}
+.next .km{color:#7fd9d2}
+.next .ph{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.55);color:#fff}
+.trip-sec .next-head{display:block;text-align:center;margin-bottom:2.5rem}
+.next-head h2{max-width:none}
+.next-head h2{font-size:clamp(1.9rem,4vw,2.6rem)}
+.don .wrap{display:grid;grid-template-columns:1fr 1fr;gap:3.5rem;align-items:center}
+.don h2{margin-bottom:.4em}
+.dgal{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.dgal .ph{aspect-ratio:1/1;margin:0}
+.dgal .ph span{font-size:.85rem}
+@media (max-width:800px){
+  .trip-sec .wrap,.don .wrap{grid-template-columns:1fr;gap:2rem}
+  .grid6{grid-template-columns:1fr 1fr}
+  .trip-sec{padding:3.5rem 0}
+}
+
+.pic{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:6px}
+.wideimg{display:block;width:100%;aspect-ratio:21/8;object-fit:cover}
+.map{display:block;width:100%;height:auto;border-radius:6px}
+.grid6 .pic{aspect-ratio:1/1}
+.next .next-body{display:block;text-align:center}
+.next .next-body h2{margin-bottom:.3em}
+.next .km2{font-family:var(--head);font-size:1.7rem;margin:0 0 1.6em;color:#7fd9d2}
+.next .btn{background:var(--teal);border-color:var(--teal);color:#fff}
+.next .btn:hover{background:#008a82;border-color:#008a82}
+</style>
+</head>
+<body>
+
+<!--
+PHOTOS: each dashed box is a placeholder. Upload the photos to the repo and replace the box with
+<img src="your-photo.jpg" alt="describe the photo">
+ROUTE MAPS: replace the map boxes with screenshots of the route maps, saved as e.g. barcelona-florence-map.jpg
+-->
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="inf" viewBox="0 0 100 54">
+    <g fill="none" stroke="currentColor" stroke-width="6">
+      <circle cx="27" cy="27" r="18"/><circle cx="73" cy="27" r="18"/><path d="M39.7 39.7L60.3 14.3"/>
+    </g>
+  </symbol>
+</svg>
+
+<header class="top">
+  <div class="wrap nav">
+    <a class="logo" href="index.html"><img src="logo.png" alt="Earthed Project"></a>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="our-story.html">Our story</a></li>
+      <li><a href="latest-adventure.html" aria-current="page">Latest adventure</a></li>
+      <li><a href="https://fundrazr.com/earthedproject" target="_blank" rel="noopener">Donate</a></li>
+    </ul>
+  </div>
+</header>
+
+<main>
+  <section class="la-hero">
+    <h1>Where have we <span class="ul">been?</span></h1>
+  </section>
+
+  <img class="wideimg" src="banner.jpg" alt="Earthed Project cyclists with their bikes">
+
+  <section class="trip-sec">
+    <div class="wrap">
+      <div>
+        <h2>Trip 1: Barcelona to Florence</h2>
+        <p class="km">1,350 km</p>
+        <p>Stacey, Nathan, and Nikita cycled 1,350 kilometers from Barcelona to Florence, while Nixee took the wheel of the support campervan, carrying their gear and cooking a mean bolognese on the way.</p>
+      </div>
+      <div>
+        <img class="map" src="Route-barce-flore.jpg" alt="Route from Barcelona to Florence">
+      </div>
+    </div>
+    <div class="wrap">
+      <div class="grid6">
+        <img class="pic" src="LeLavandou-Agay-Nate-tunnel.png" alt="Earthed Project cycling trip">
+        <img class="pic" src="Perpignan-Agde-Lunch.jpg" alt="Earthed Project cycling trip">
+        <img class="pic" src="On-the-road.png" alt="Earthed Project cycling trip">
+        <img class="pic" src="Geneva.jpg" alt="Earthed Project cycling trip">
+        <img class="pic" src="Florence-team.jpg" alt="Earthed Project cycling trip">
+        <img class="pic" src="French-border-crossing.jpg" alt="Earthed Project cycling trip">
+      </div>
+    </div>
+  </section>
+
+  <section class="trip-sec alt">
+    <div class="wrap">
+      <div>
+        <h2>Trip 2: Florence to Zagreb</h2>
+        <p class="km">774 km &middot; October 2025</p>
+        <p>Stacey, Nathan, Nikita, and Mark cycled 774 km (481 miles) from Florence, Italy to Zagreb, Croatia. Vita drove the support campervan, making sure the cyclists had their supplies and gear ready whenever they needed it. Nixee followed mid trip, along with baby Ezio, who was just 6 months old, and Carmen, the official team photographer.</p>
+        <div class="stats">
+          <p><strong>&euro;1,140</strong> raised, 114% of our &euro;1,000 goal</p>
+          <p><strong>24</strong> supporters chipped in</p>
+          <p><a href="https://fundrazr.com/earthedproject" target="_blank" rel="noopener">See the campaign</a></p>
+        </div>
+      </div>
+      <div>
+        <img class="map" src="ROUTE-FLORE-ZAGREB.png" alt="Route from Florence to Zagreb">
+      </div>
+    </div>
+    <div class="wrap">
+      <div class="grid6">
+        <img class="pic" src="zagreb-29.jpg" alt="Florence to Zagreb cycling trip">
+        <img class="pic" src="000-120.jpg" alt="Florence to Zagreb cycling trip">
+        <img class="pic" src="Italy.jpg" alt="Florence to Zagreb cycling trip">
+        <img class="pic" src="40.jpg" alt="Florence to Zagreb cycling trip">
+        <img class="pic" src="000-68.jpg" alt="Florence to Zagreb cycling trip">
+        <img class="pic" src="79.jpg" alt="Florence to Zagreb cycling trip">
+        <img class="pic" src="zagreb-60.jpg" alt="Florence to Zagreb cycling trip">
+        <img class="pic" src="zagreb-25.jpg" alt="Florence to Zagreb cycling trip">
+        <img class="pic" src="zagreb-37.jpg" alt="Florence to Zagreb cycling trip">
+      </div>
+    </div>
+  </section>
+
+  <section class="don">
+    <div class="wrap">
+      <div>
+        <h2>Where the donations went</h2>
+        <p>We have partnered with a public school in the island of Negros Occidental: Jose D. Cuaycong Elementary School. The school serves 145 children, whose families have an average household income of less than $130 a month. It has been serving its community since the 1940s. For decades, it has relied on government funding. Unfortunately, corruption and the misuse of public funds are a well-known and deeply frustrating reality in the Philippines.</p>
+        <p>That's why your donations are incredibly appreciated! Your generosity allows us to do something tangible for these children.</p>
+      </div>
+      <div class="dgal">
+          <img class="pic" src="school1.jpg" alt="Supplies delivered to Jose D. Cuaycong Elementary School">
+          <img class="pic" src="school2.jpg" alt="Supplies delivered to Jose D. Cuaycong Elementary School">
+          <img class="pic" src="school3.jpg" alt="Supplies delivered to Jose D. Cuaycong Elementary School">
+          <img class="pic" src="school4.jpg" alt="Supplies delivered to Jose D. Cuaycong Elementary School">
+      </div>
+    </div>
+  </section>
+
+  <section class="trip-sec next">
+    <div class="wrap next-head"><h2>Where are we going next?</h2></div>
+    <div class="wrap next-body">
+      <h2>Trip 3: Barcelona to Granada, Spain</h2>
+      <p class="km">1,200 km</p>
+      <p class="km2">March 2027</p>
+      <!-- Replace # with the link for Learn more -->
+      <a class="btn" href="#">Learn more</a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <a class="brand" href="index.html"><img src="logo.png" alt="Earthed Project"></a>
+    <a class="follow" href="https://www.instagram.com/earthedproject" target="_blank" rel="noopener" aria-label="Follow Earthed Project on Instagram">
+      <span>Follow for updates!</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="#245d9d" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r=".6" fill="#245d9d"/></svg>
+    </a>
+  </div>
+</footer>
+
+</body>
+</html>
