@@ -180,6 +180,11 @@ footer .brand img{height:64px;width:auto;display:block}
 .thumbs.cols3{grid-template-columns:repeat(2,1fr);max-width:960px}
 .thumbs.cols2{grid-template-columns:repeat(2,1fr);max-width:960px}
 @media (max-width:600px){.thumbs.cols3,.thumbs.cols2{grid-template-columns:1fr}}
+
+.route-btn{display:block;width:100%;padding:0;border:0;background:none;cursor:zoom-in;margin:0 0 2rem}
+.route-btn:focus-visible{outline:3px solid var(--teal);outline-offset:3px}
+.route-btn .route{margin:0}
+.lb.single .lb-arrow{display:none}
 </style>
 </head>
 <body>
@@ -224,7 +229,7 @@ ROUTE MAPS: replace the map boxes with screenshots of the route maps, saved as e
       </div>
     </div>
     <div class="wrap">
-      <img class="route" src="Route-barce-flore.jpg" alt="Route from Barcelona to Florence">
+      <button class="route-btn" type="button" aria-label="Open Route from Barcelona to Florence full size"><img class="route" src="Route-barce-flore.jpg" alt="Route from Barcelona to Florence"></button>
     </div>
     <div class="wrap">
       <div class="thumbs cols3" id="t1Grid">
@@ -252,7 +257,7 @@ ROUTE MAPS: replace the map boxes with screenshots of the route maps, saved as e
       </div>
     </div>
     <div class="wrap">
-      <img class="route" src="ROUTE-FLORE-ZAGREB.png" alt="Route from Florence to Zagreb">
+      <button class="route-btn" type="button" aria-label="Open Route from Florence to Zagreb full size"><img class="route" src="ROUTE-FLORE-ZAGREB.png" alt="Route from Florence to Zagreb"></button>
     </div>
     <div class="wrap">
       <div class="thumbs cols3" id="t2Grid">
@@ -265,6 +270,7 @@ ROUTE MAPS: replace the map boxes with screenshots of the route maps, saved as e
         <button class="thumb" type="button" aria-label="Open photo 7"><img src="zagreb-60.jpg" alt="Florence to Zagreb cycling trip"></button>
         <button class="thumb" type="button" aria-label="Open photo 8"><img src="zagreb-25.jpg" alt="Florence to Zagreb cycling trip"></button>
         <button class="thumb" type="button" aria-label="Open photo 9"><img src="zagreb-37.jpg" alt="Florence to Zagreb cycling trip"></button>
+        <button class="thumb" type="button" aria-label="Open photo 10"><img src="zagreb.jpeg" alt="Florence to Zagreb cycling trip"></button>
       </div>
     </div>
   </section>
@@ -297,8 +303,7 @@ ROUTE MAPS: replace the map boxes with screenshots of the route maps, saved as e
       <h2>Trip 3: Barcelona to Granada, Spain</h2>
       <p class="km">1,200 km</p>
       <p class="km2">March 2027</p>
-      <!-- Replace # with the link for Learn more -->
-      <a class="btn" href="#">Learn more</a>
+      <a class="btn" href="https://fundrazr.com/earthedproject" target="_blank" rel="noopener">Learn more</a>
     </div>
   </section>
 </main>
@@ -323,7 +328,7 @@ ROUTE MAPS: replace the map boxes with screenshots of the route maps, saved as e
     img.alt=list[idx].getAttribute('data-alt');
   }
   var lastTrigger=null;
-  function open(thumbs,i){ list=thumbs; lastTrigger=thumbs[i]; show(i); lb.hidden=false; lb.querySelector('.lb-close').focus(); }
+  function open(thumbs,i){ list=thumbs; lastTrigger=thumbs[i]; lb.classList.toggle('single',thumbs.length<2); show(i); lb.hidden=false; lb.querySelector('.lb-close').focus(); }
   function close(){ lb.hidden=true; if(lastTrigger) lastTrigger.focus(); }
   document.querySelectorAll('.thumbs').forEach(function(grid){
     var thumbs=[].slice.call(grid.querySelectorAll('.thumb'));
@@ -333,6 +338,12 @@ ROUTE MAPS: replace the map boxes with screenshots of the route maps, saved as e
       t.setAttribute('data-alt',im.getAttribute('alt'));
     });
     thumbs.forEach(function(t,i){ t.addEventListener('click',function(){ open(thumbs,i); }); });
+  });
+  document.querySelectorAll('.route-btn').forEach(function(b){
+    var im=b.querySelector('img');
+    b.setAttribute('data-src',im.getAttribute('src'));
+    b.setAttribute('data-alt',im.getAttribute('alt'));
+    b.addEventListener('click',function(){ open([b],0); });
   });
   lb.querySelector('.lb-close').addEventListener('click',close);
   lb.querySelector('.lb-prev').addEventListener('click',function(){ show(idx-1); });
