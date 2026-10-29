@@ -177,6 +177,9 @@ footer .brand img{height:64px;width:auto;display:block}
 .lb-arrow{position:absolute;top:50%;transform:translateY(-50%);width:48px;height:48px;border-radius:50%;border:0;background:rgba(255,255,255,.92);color:var(--blue);font-size:1.5rem;cursor:pointer}
 .lb-prev{left:1rem}.lb-next{right:1rem}
 @media (max-width:600px){.thumbs{grid-template-columns:1fr}.lb{padding:3rem 1rem}}
+.thumbs.cols3{grid-template-columns:repeat(3,1fr);max-width:900px}
+.thumbs.cols2{max-width:720px}
+@media (max-width:600px){.thumbs.cols3{grid-template-columns:repeat(2,1fr)}}
 </style>
 </head>
 <body>
@@ -224,17 +227,13 @@ ROUTE MAPS: replace the map boxes with screenshots of the route maps, saved as e
       <img class="route" src="Route-barce-flore.jpg" alt="Route from Barcelona to Florence">
     </div>
     <div class="wrap">
-      <div class="carousel">
-        <div class="track" id="t1">
-          <figure class="slide"><img src="LeLavandou-Agay-Nate-tunnel.png" alt="Earthed Project cycling trip"></figure>
-          <figure class="slide"><img src="Perpignan-Agde-Lunch.jpg" alt="Earthed Project cycling trip"></figure>
-          <figure class="slide"><img src="On-the-road.png" alt="Earthed Project cycling trip"></figure>
-          <figure class="slide"><img src="Geneva.jpg" alt="Earthed Project cycling trip"></figure>
-          <figure class="slide"><img src="Florence-team.jpg" alt="Earthed Project cycling trip"></figure>
-          <figure class="slide"><img src="French-border-crossing.jpg" alt="Earthed Project cycling trip"></figure>
-        </div>
-        <button class="arrow prev" type="button" aria-label="Previous photos" onclick="document.getElementById('t1').scrollBy({left:-460,behavior:'smooth'})">&#8249;</button>
-        <button class="arrow next" type="button" aria-label="Next photos" onclick="document.getElementById('t1').scrollBy({left:460,behavior:'smooth'})">&#8250;</button>
+      <div class="thumbs cols3" id="t1Grid">
+        <button class="thumb" type="button" aria-label="Open photo 1"><img src="LeLavandou-Agay-Nate-tunnel.png" alt="Earthed Project cycling trip"></button>
+        <button class="thumb" type="button" aria-label="Open photo 2"><img src="Perpignan-Agde-Lunch.jpg" alt="Earthed Project cycling trip"></button>
+        <button class="thumb" type="button" aria-label="Open photo 3"><img src="On-the-road.png" alt="Earthed Project cycling trip"></button>
+        <button class="thumb" type="button" aria-label="Open photo 4"><img src="Geneva.jpg" alt="Earthed Project cycling trip"></button>
+        <button class="thumb" type="button" aria-label="Open photo 5"><img src="Florence-team.jpg" alt="Earthed Project cycling trip"></button>
+        <button class="thumb" type="button" aria-label="Open photo 6"><img src="French-border-crossing.jpg" alt="Earthed Project cycling trip"></button>
       </div>
     </div>
   </section>
@@ -256,20 +255,16 @@ ROUTE MAPS: replace the map boxes with screenshots of the route maps, saved as e
       <img class="route" src="ROUTE-FLORE-ZAGREB.png" alt="Route from Florence to Zagreb">
     </div>
     <div class="wrap">
-      <div class="carousel">
-        <div class="track" id="t2">
-          <figure class="slide"><img src="zagreb-29.jpg" alt="Florence to Zagreb cycling trip"></figure>
-          <figure class="slide"><img src="000-120.jpg" alt="Florence to Zagreb cycling trip"></figure>
-          <figure class="slide"><img src="Italy.jpg" alt="Florence to Zagreb cycling trip"></figure>
-          <figure class="slide"><img src="40.jpg" alt="Florence to Zagreb cycling trip"></figure>
-          <figure class="slide"><img src="000-68.jpg" alt="Florence to Zagreb cycling trip"></figure>
-          <figure class="slide"><img src="79.jpg" alt="Florence to Zagreb cycling trip"></figure>
-          <figure class="slide"><img src="zagreb-60.jpg" alt="Florence to Zagreb cycling trip"></figure>
-          <figure class="slide"><img src="zagreb-25.jpg" alt="Florence to Zagreb cycling trip"></figure>
-          <figure class="slide"><img src="zagreb-37.jpg" alt="Florence to Zagreb cycling trip"></figure>
-        </div>
-        <button class="arrow prev" type="button" aria-label="Previous photos" onclick="document.getElementById('t2').scrollBy({left:-460,behavior:'smooth'})">&#8249;</button>
-        <button class="arrow next" type="button" aria-label="Next photos" onclick="document.getElementById('t2').scrollBy({left:460,behavior:'smooth'})">&#8250;</button>
+      <div class="thumbs cols3" id="t2Grid">
+        <button class="thumb" type="button" aria-label="Open photo 1"><img src="zagreb-29.jpg" alt="Florence to Zagreb cycling trip"></button>
+        <button class="thumb" type="button" aria-label="Open photo 2"><img src="000-120.jpg" alt="Florence to Zagreb cycling trip"></button>
+        <button class="thumb" type="button" aria-label="Open photo 3"><img src="Italy.jpg" alt="Florence to Zagreb cycling trip"></button>
+        <button class="thumb" type="button" aria-label="Open photo 4"><img src="40.jpg" alt="Florence to Zagreb cycling trip"></button>
+        <button class="thumb" type="button" aria-label="Open photo 5"><img src="000-68.jpg" alt="Florence to Zagreb cycling trip"></button>
+        <button class="thumb" type="button" aria-label="Open photo 6"><img src="79.jpg" alt="Florence to Zagreb cycling trip"></button>
+        <button class="thumb" type="button" aria-label="Open photo 7"><img src="zagreb-60.jpg" alt="Florence to Zagreb cycling trip"></button>
+        <button class="thumb" type="button" aria-label="Open photo 8"><img src="zagreb-25.jpg" alt="Florence to Zagreb cycling trip"></button>
+        <button class="thumb" type="button" aria-label="Open photo 9"><img src="zagreb-37.jpg" alt="Florence to Zagreb cycling trip"></button>
       </div>
     </div>
   </section>
@@ -281,7 +276,7 @@ ROUTE MAPS: replace the map boxes with screenshots of the route maps, saved as e
         <p>We have partnered with a public school in the island of Negros Occidental: Jose D. Cuaycong Elementary School. The school serves 145 children, whose families have an average household income of less than $130 a month. It has been serving its community since the 1940s. For decades, it has relied on government funding. Unfortunately, corruption and the misuse of public funds are a well-known and deeply frustrating reality in the Philippines.</p>
         <p>That's why your donations are incredibly appreciated! Your generosity allows us to do something tangible for these children.</p>
       </div>
-      <div class="thumbs" id="donGrid">
+      <div class="thumbs cols2" id="donGrid">
         <button class="thumb" type="button" data-i="0" aria-label="Open photo 1"><img src="school1.jpg" alt="Supplies delivered to Jose D. Cuaycong Elementary School"></button>
         <button class="thumb" type="button" data-i="1" aria-label="Open photo 2"><img src="school2.jpg" alt="Supplies delivered to Jose D. Cuaycong Elementary School"></button>
         <button class="thumb" type="button" data-i="2" aria-label="Open photo 3"><img src="school3.jpg" alt="Supplies delivered to Jose D. Cuaycong Elementary School"></button>
@@ -320,16 +315,25 @@ ROUTE MAPS: replace the map boxes with screenshots of the route maps, saved as e
 
 <script>
 (function(){
-  var thumbs=[].slice.call(document.querySelectorAll('#donGrid .thumb'));
   var lb=document.getElementById('lb'), img=document.getElementById('lbImg');
-  var idx=0;
+  var list=[], idx=0;
   function show(i){
-    idx=(i+thumbs.length)%thumbs.length;
-    img.src=thumbs[idx].querySelector('img').src;
+    idx=(i+list.length)%list.length;
+    img.src=list[idx].getAttribute('data-src');
+    img.alt=list[idx].getAttribute('data-alt');
   }
-  function open(i){ show(i); lb.hidden=false; lb.querySelector('.lb-close').focus(); }
-  function close(){ lb.hidden=true; thumbs[idx].focus(); }
-  thumbs.forEach(function(t,i){ t.addEventListener('click',function(){ open(i); }); });
+  var lastTrigger=null;
+  function open(thumbs,i){ list=thumbs; lastTrigger=thumbs[i]; show(i); lb.hidden=false; lb.querySelector('.lb-close').focus(); }
+  function close(){ lb.hidden=true; if(lastTrigger) lastTrigger.focus(); }
+  document.querySelectorAll('.thumbs').forEach(function(grid){
+    var thumbs=[].slice.call(grid.querySelectorAll('.thumb'));
+    thumbs.forEach(function(t){
+      var im=t.querySelector('img');
+      t.setAttribute('data-src',im.getAttribute('src'));
+      t.setAttribute('data-alt',im.getAttribute('alt'));
+    });
+    thumbs.forEach(function(t,i){ t.addEventListener('click',function(){ open(thumbs,i); }); });
+  });
   lb.querySelector('.lb-close').addEventListener('click',close);
   lb.querySelector('.lb-prev').addEventListener('click',function(){ show(idx-1); });
   lb.querySelector('.lb-next').addEventListener('click',function(){ show(idx+1); });
