@@ -101,7 +101,7 @@ footer .brand img{height:64px;width:auto;display:block}
 }
 
 /* latest adventure */
-.la-hero{background:var(--blue);color:#fff;text-align:center;padding:5rem 1.5rem 4rem}
+.la-hero{position:relative;min-height:460px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:4rem 1.5rem;color:#fff;background:linear-gradient(rgba(36,93,157,.4),rgba(36,93,157,.4)),url(banner.jpg) center/cover no-repeat,#245d9d}
 .la-hero h1{font-size:clamp(2.4rem,6vw,4rem);margin:0}
 .la-hero .ul::after{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 12' preserveAspectRatio='none'%3E%3Cpath d='M1 8 Q30 3 60 7 T99 5' fill='none' stroke='%2301a59b' stroke-width='3' vector-effect='non-scaling-stroke'/%3E%3C/svg%3E")}
 .trip-sec{padding:4.5rem 0}
@@ -146,6 +146,37 @@ footer .brand img{height:64px;width:auto;display:block}
 .next .km2{font-family:var(--head);font-size:1.7rem;margin:0 0 1.6em;color:#7fd9d2}
 .next .btn{background:var(--teal);border-color:var(--teal);color:#fff}
 .next .btn:hover{background:#008a82;border-color:#008a82}
+
+/* single column: text first, then photos stacked underneath */
+.trip-sec .wrap,.don .wrap{grid-template-columns:1fr !important;gap:2rem !important}
+.trip-sec .wrap > div,.don .wrap > div{max-width:720px;width:100%;margin:0 auto}
+.grid6,.dgal{grid-template-columns:1fr !important;gap:1.5rem !important;max-width:720px;margin:2rem auto 0}
+.grid6 .pic,.dgal .pic{aspect-ratio:4/3 !important}
+.map{max-width:720px;margin:0 auto}
+.trip-sec .wrap > .map{margin:0 auto}
+
+.route{display:block;width:100%;height:auto;border-radius:6px;margin:0 0 2rem}
+.carousel{position:relative}
+.track{display:flex;gap:1rem;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding:0 1.5rem}
+.track::-webkit-scrollbar{display:none}
+.slide{flex:0 0 min(440px,82%);aspect-ratio:4/3;scroll-snap-align:start;margin:0}
+.slide img{display:block;width:100%;height:100%;object-fit:cover;border-radius:6px}
+.arrow{position:absolute;top:50%;transform:translateY(-50%);width:46px;height:46px;border-radius:50%;border:0;background:rgba(255,255,255,.92);color:var(--blue);font-size:1.3rem;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.2)}
+.arrow:hover{background:#fff}
+.arrow.prev{left:.8rem}.arrow.next{right:.8rem}
+
+.thumbs{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;max-width:720px;margin:2rem auto 0}
+.thumb{padding:0;border:0;background:none;cursor:zoom-in;border-radius:6px;overflow:hidden;aspect-ratio:4/3}
+.thumb img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .2s}
+.thumb:hover img{transform:scale(1.03)}
+.thumb:focus-visible{outline:3px solid var(--teal);outline-offset:3px}
+.lb{position:fixed;inset:0;z-index:50;background:rgba(10,20,35,.92);display:flex;align-items:center;justify-content:center;padding:3rem 4rem}
+.lb[hidden]{display:none}
+.lb img{max-width:100%;max-height:100%;object-fit:contain;border-radius:6px}
+.lb-close{position:absolute;top:1rem;right:1.2rem;background:none;border:0;color:#fff;font-size:2.4rem;line-height:1;cursor:pointer}
+.lb-arrow{position:absolute;top:50%;transform:translateY(-50%);width:48px;height:48px;border-radius:50%;border:0;background:rgba(255,255,255,.92);color:var(--blue);font-size:1.5rem;cursor:pointer}
+.lb-prev{left:1rem}.lb-next{right:1rem}
+@media (max-width:600px){.thumbs{grid-template-columns:1fr}.lb{padding:3rem 1rem}}
 </style>
 </head>
 <body>
@@ -181,8 +212,6 @@ ROUTE MAPS: replace the map boxes with screenshots of the route maps, saved as e
     <h1>Where have we <span class="ul">been?</span></h1>
   </section>
 
-  <img class="wideimg" src="banner.jpg" alt="Earthed Project cyclists with their bikes">
-
   <section class="trip-sec">
     <div class="wrap">
       <div>
@@ -190,18 +219,22 @@ ROUTE MAPS: replace the map boxes with screenshots of the route maps, saved as e
         <p class="km">1,350 km</p>
         <p>Stacey, Nathan, and Nikita cycled 1,350 kilometers from Barcelona to Florence, while Nixee took the wheel of the support campervan, carrying their gear and cooking a mean bolognese on the way.</p>
       </div>
-      <div>
-        <img class="map" src="Route-barce-flore.jpg" alt="Route from Barcelona to Florence">
-      </div>
     </div>
     <div class="wrap">
-      <div class="grid6">
-        <img class="pic" src="LeLavandou-Agay-Nate-tunnel.png" alt="Earthed Project cycling trip">
-        <img class="pic" src="Perpignan-Agde-Lunch.jpg" alt="Earthed Project cycling trip">
-        <img class="pic" src="On-the-road.png" alt="Earthed Project cycling trip">
-        <img class="pic" src="Geneva.jpg" alt="Earthed Project cycling trip">
-        <img class="pic" src="Florence-team.jpg" alt="Earthed Project cycling trip">
-        <img class="pic" src="French-border-crossing.jpg" alt="Earthed Project cycling trip">
+      <img class="route" src="Route-barce-flore.jpg" alt="Route from Barcelona to Florence">
+    </div>
+    <div class="wrap">
+      <div class="carousel">
+        <div class="track" id="t1">
+          <figure class="slide"><img src="LeLavandou-Agay-Nate-tunnel.png" alt="Earthed Project cycling trip"></figure>
+          <figure class="slide"><img src="Perpignan-Agde-Lunch.jpg" alt="Earthed Project cycling trip"></figure>
+          <figure class="slide"><img src="On-the-road.png" alt="Earthed Project cycling trip"></figure>
+          <figure class="slide"><img src="Geneva.jpg" alt="Earthed Project cycling trip"></figure>
+          <figure class="slide"><img src="Florence-team.jpg" alt="Earthed Project cycling trip"></figure>
+          <figure class="slide"><img src="French-border-crossing.jpg" alt="Earthed Project cycling trip"></figure>
+        </div>
+        <button class="arrow prev" type="button" aria-label="Previous photos" onclick="document.getElementById('t1').scrollBy({left:-460,behavior:'smooth'})">&#8249;</button>
+        <button class="arrow next" type="button" aria-label="Next photos" onclick="document.getElementById('t1').scrollBy({left:460,behavior:'smooth'})">&#8250;</button>
       </div>
     </div>
   </section>
@@ -218,21 +251,25 @@ ROUTE MAPS: replace the map boxes with screenshots of the route maps, saved as e
           <p><a href="https://fundrazr.com/earthedproject" target="_blank" rel="noopener">See the campaign</a></p>
         </div>
       </div>
-      <div>
-        <img class="map" src="ROUTE-FLORE-ZAGREB.png" alt="Route from Florence to Zagreb">
-      </div>
     </div>
     <div class="wrap">
-      <div class="grid6">
-        <img class="pic" src="zagreb-29.jpg" alt="Florence to Zagreb cycling trip">
-        <img class="pic" src="000-120.jpg" alt="Florence to Zagreb cycling trip">
-        <img class="pic" src="Italy.jpg" alt="Florence to Zagreb cycling trip">
-        <img class="pic" src="40.jpg" alt="Florence to Zagreb cycling trip">
-        <img class="pic" src="000-68.jpg" alt="Florence to Zagreb cycling trip">
-        <img class="pic" src="79.jpg" alt="Florence to Zagreb cycling trip">
-        <img class="pic" src="zagreb-60.jpg" alt="Florence to Zagreb cycling trip">
-        <img class="pic" src="zagreb-25.jpg" alt="Florence to Zagreb cycling trip">
-        <img class="pic" src="zagreb-37.jpg" alt="Florence to Zagreb cycling trip">
+      <img class="route" src="ROUTE-FLORE-ZAGREB.png" alt="Route from Florence to Zagreb">
+    </div>
+    <div class="wrap">
+      <div class="carousel">
+        <div class="track" id="t2">
+          <figure class="slide"><img src="zagreb-29.jpg" alt="Florence to Zagreb cycling trip"></figure>
+          <figure class="slide"><img src="000-120.jpg" alt="Florence to Zagreb cycling trip"></figure>
+          <figure class="slide"><img src="Italy.jpg" alt="Florence to Zagreb cycling trip"></figure>
+          <figure class="slide"><img src="40.jpg" alt="Florence to Zagreb cycling trip"></figure>
+          <figure class="slide"><img src="000-68.jpg" alt="Florence to Zagreb cycling trip"></figure>
+          <figure class="slide"><img src="79.jpg" alt="Florence to Zagreb cycling trip"></figure>
+          <figure class="slide"><img src="zagreb-60.jpg" alt="Florence to Zagreb cycling trip"></figure>
+          <figure class="slide"><img src="zagreb-25.jpg" alt="Florence to Zagreb cycling trip"></figure>
+          <figure class="slide"><img src="zagreb-37.jpg" alt="Florence to Zagreb cycling trip"></figure>
+        </div>
+        <button class="arrow prev" type="button" aria-label="Previous photos" onclick="document.getElementById('t2').scrollBy({left:-460,behavior:'smooth'})">&#8249;</button>
+        <button class="arrow next" type="button" aria-label="Next photos" onclick="document.getElementById('t2').scrollBy({left:460,behavior:'smooth'})">&#8250;</button>
       </div>
     </div>
   </section>
@@ -244,11 +281,17 @@ ROUTE MAPS: replace the map boxes with screenshots of the route maps, saved as e
         <p>We have partnered with a public school in the island of Negros Occidental: Jose D. Cuaycong Elementary School. The school serves 145 children, whose families have an average household income of less than $130 a month. It has been serving its community since the 1940s. For decades, it has relied on government funding. Unfortunately, corruption and the misuse of public funds are a well-known and deeply frustrating reality in the Philippines.</p>
         <p>That's why your donations are incredibly appreciated! Your generosity allows us to do something tangible for these children.</p>
       </div>
-      <div class="dgal">
-          <img class="pic" src="school1.jpg" alt="Supplies delivered to Jose D. Cuaycong Elementary School">
-          <img class="pic" src="school2.jpg" alt="Supplies delivered to Jose D. Cuaycong Elementary School">
-          <img class="pic" src="school3.jpg" alt="Supplies delivered to Jose D. Cuaycong Elementary School">
-          <img class="pic" src="school4.jpg" alt="Supplies delivered to Jose D. Cuaycong Elementary School">
+      <div class="thumbs" id="donGrid">
+        <button class="thumb" type="button" data-i="0" aria-label="Open photo 1"><img src="school1.jpg" alt="Supplies delivered to Jose D. Cuaycong Elementary School"></button>
+        <button class="thumb" type="button" data-i="1" aria-label="Open photo 2"><img src="school2.jpg" alt="Supplies delivered to Jose D. Cuaycong Elementary School"></button>
+        <button class="thumb" type="button" data-i="2" aria-label="Open photo 3"><img src="school3.jpg" alt="Supplies delivered to Jose D. Cuaycong Elementary School"></button>
+        <button class="thumb" type="button" data-i="3" aria-label="Open photo 4"><img src="school4.jpg" alt="Supplies delivered to Jose D. Cuaycong Elementary School"></button>
+      </div>
+      <div class="lb" id="lb" hidden role="dialog" aria-modal="true" aria-label="Donation photos">
+        <button class="lb-close" type="button" aria-label="Close">&times;</button>
+        <button class="lb-arrow lb-prev" type="button" aria-label="Previous photo">&#8249;</button>
+        <img id="lbImg" src="" alt="Supplies delivered to Jose D. Cuaycong Elementary School">
+        <button class="lb-arrow lb-next" type="button" aria-label="Next photo">&#8250;</button>
       </div>
     </div>
   </section>
@@ -275,5 +318,29 @@ ROUTE MAPS: replace the map boxes with screenshots of the route maps, saved as e
   </div>
 </footer>
 
+<script>
+(function(){
+  var thumbs=[].slice.call(document.querySelectorAll('#donGrid .thumb'));
+  var lb=document.getElementById('lb'), img=document.getElementById('lbImg');
+  var idx=0;
+  function show(i){
+    idx=(i+thumbs.length)%thumbs.length;
+    img.src=thumbs[idx].querySelector('img').src;
+  }
+  function open(i){ show(i); lb.hidden=false; lb.querySelector('.lb-close').focus(); }
+  function close(){ lb.hidden=true; thumbs[idx].focus(); }
+  thumbs.forEach(function(t,i){ t.addEventListener('click',function(){ open(i); }); });
+  lb.querySelector('.lb-close').addEventListener('click',close);
+  lb.querySelector('.lb-prev').addEventListener('click',function(){ show(idx-1); });
+  lb.querySelector('.lb-next').addEventListener('click',function(){ show(idx+1); });
+  lb.addEventListener('click',function(e){ if(e.target===lb) close(); });
+  document.addEventListener('keydown',function(e){
+    if(lb.hidden) return;
+    if(e.key==='Escape') close();
+    if(e.key==='ArrowLeft') show(idx-1);
+    if(e.key==='ArrowRight') show(idx+1);
+  });
+})();
+</script>
 </body>
 </html>
